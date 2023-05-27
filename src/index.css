@@ -1,3 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Code couleur : 
+
+Blanc
+
+Noir
+
+gris ( #CAD0D9 )
+
+Rouge black ( #900C3F )
+
+& bleu (#1C6899) */
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
