@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import { types } from '../helpers'
 
 const StepperContext = createContext({} as types.Stepper)
@@ -22,7 +22,13 @@ function StepperProvider(props: {
         }
     }
 
-    const handleNext = () => {
+    useMemo(() => {
+        console.log(globalData)
+    }, [globalData])
+
+    const handleNext = (data: types.Reservation) => {
+        console.log('submit')
+        addFormData(data)
         setActiveStep((prev) => prev + 1)
     }
 

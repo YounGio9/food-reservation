@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStepper } from '../../../contexts/StepperContext'
+import { types } from '../../../helpers'
 
 function Invitation() {
     const [adults, setAdults] = React.useState<number>(0)
@@ -91,7 +92,13 @@ function Invitation() {
             )}
             <div className='flex p-6 items-center justify-end'>
                 <button
-                    onClick={() => props.handleNext()}
+                    disabled={totalGuests <= 0}
+                    onClick={() =>
+                        props.handleNext({
+                            adultsGuests: adults,
+                            childrenGuests: children,
+                        } as types.Reservation)
+                    }
                     className={`border-2  ${
                         totalGuests === 0
                             ? 'border-grey text-grey'
