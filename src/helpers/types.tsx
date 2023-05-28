@@ -2,6 +2,7 @@ export interface Stepper {
     activeStep: number
     handleNext: () => void
     handleBack: () => void
+    addFormData: (data: Reservation) => void
 }
 
 export type contextChildren =
@@ -16,3 +17,5 @@ export interface Step {
     label: string
     element: () => React.JSX.Element
 }
+
+export interface Reservation {}

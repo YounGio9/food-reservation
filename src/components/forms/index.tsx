@@ -4,7 +4,7 @@ import Form from './Form'
 
 function index() {
     return (
-        <StepperProvider>
+        <StepperProvider numberOfSteps={5}>
             <Form />
         </StepperProvider>
     )
