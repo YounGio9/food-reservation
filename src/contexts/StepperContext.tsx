@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useMemo, useState } from 'react'
 import { types } from '../helpers'
 
 const StepperContext = createContext({} as types.Stepper)

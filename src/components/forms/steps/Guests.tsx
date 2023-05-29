@@ -2,7 +2,7 @@ import React from 'react'
 import { useStepper } from '../../../contexts/StepperContext'
 import { types } from '../../../helpers'
 
-function Invitation() {
+function Guests() {
     const [adults, setAdults] = React.useState<number>(0)
     const [children, setChildren] = React.useState<number>(0)
 
@@ -99,7 +99,7 @@ function Invitation() {
                             childrenGuests: children,
                         } as types.Reservation)
                     }
-                    className={`border-2  ${
+                    className={`border-2 transition duration-500  ${
                         totalGuests === 0
                             ? 'border-grey text-grey'
                             : 'border-black'
@@ -117,4 +117,4 @@ function Invitation() {
     )
 }
 
-export default Invitation
+export default Guests
