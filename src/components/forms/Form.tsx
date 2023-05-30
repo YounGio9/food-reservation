@@ -18,13 +18,11 @@ function Form() {
 
     const { activeStep }: types.Stepper = useStepper()
 
-    // const stepsImages: string[] = []
-
     useEffect(() => {
         console.log(activeStep)
     }, [activeStep])
 
-    const Element = Steps[1].element
+    const Element = Steps[activeStep].element
 
     return (
         <div className='w-full h-auto bg-white font-bold rounded-3xl'>
