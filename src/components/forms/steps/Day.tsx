@@ -1,29 +1,21 @@
 import React from 'react'
 import 'react-calendar/dist/Calendar.css'
 import Calendar from 'react-calendar'
-import { types } from '../../../helpers'
 import { useStepper } from '../../../contexts/StepperContext'
 
-function DateAndTime() {
-    const [activeDate, setActiveDate] = React.useState<Date>(new Date())
-
-    const { handleBack }: types.Stepper = useStepper()
-
-    // const handleChange = ()
-    React.useEffect(() => {
-        console.log(activeDate)
-    }, [activeDate])
+function DayStep() {
+    const { handleBack, setDate } = useStepper()
 
     return (
         <div>
             <Calendar
-                onChange={(value) => setActiveDate(value as Date)}
-                value={activeDate}
+                value={new Date()}
                 tileClassName={({ date }) =>
                     ![0, 1].includes(date.getDay()) && date >= new Date()
                         ? 'available'
                         : ''
                 }
+                onClickDay={(date) => setDate(date)}
                 minDate={new Date()}
                 tileDisabled={({ date }) => [0, 1].includes(date.getDay())}
             />
@@ -41,4 +33,4 @@ function DateAndTime() {
     )
 }
 
-export default DateAndTime
+export default DayStep

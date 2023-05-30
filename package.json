@@ -43,8 +43,8 @@
     },
     "lint-staged": {
         "**/*.{ts,tsx,js,jsx}": [
-            "prettier --write .",
-            "git add ."
+            "git add .",
+            "prettier --write ."
         ]
     },
     "husky": {

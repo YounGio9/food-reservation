@@ -3,6 +3,9 @@ export interface Stepper {
     handleNext: (data: Reservation) => void
     handleBack: () => void
     addFormData: (data: Reservation) => void
+    globalData: Reservation
+    choosenDate: string | null
+    setDate: (date: Date) => void
 }
 
 export type contextChildren =
@@ -31,4 +34,26 @@ export interface Reservation {
     email: string
     phoneNumber: number
     country: string
+}
+
+export enum Days {
+    'Mardi' = 2,
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+}
+
+export enum Months {
+    'Janvier' = 1,
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
 }

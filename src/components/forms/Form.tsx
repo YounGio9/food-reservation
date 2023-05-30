@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
-import DateAndTime from './steps/DateAndTime'
-import Guests from './steps/Guests'
+import { DayStep, Time, Guests } from './steps'
 
 function Form() {
     const Steps: types.Step[] = [
@@ -12,7 +11,11 @@ function Form() {
         },
         {
             label: 'Le créneau souhaité',
-            element: DateAndTime,
+            element: DayStep,
+        },
+        {
+            label: 'Le créneau souhaité',
+            element: Time,
         },
     ]
 
@@ -22,15 +25,16 @@ function Form() {
         console.log(activeStep)
     }, [activeStep])
 
-    const Element = Steps[activeStep].element
+    const ActiveElement = Steps[activeStep].element
+    const activeElementLabel = Steps[activeStep].label
 
     return (
         <div className='w-full h-auto bg-white font-bold rounded-3xl'>
             <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
-                Les invités
+                {activeElementLabel}
             </div>
             <div>
-                <Element />
+                <ActiveElement />
             </div>
         </div>
     )

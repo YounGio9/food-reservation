@@ -12,6 +12,7 @@ function StepperProvider(props: {
     const [globalData, setGlobalData] = useState<types.Reservation>(
         {} as types.Reservation,
     )
+    const [choosenDate, setChoosenDate] = useState<string | null>(null)
 
     const addFormData = (data: Partial<types.Reservation>) => {
         if (activeStep < props.numberOfSteps) {
@@ -36,9 +37,32 @@ function StepperProvider(props: {
         setActiveStep((prev) => (prev > 0 ? prev - 1 : prev))
     }
 
+    const setDate = (date: Date) => {
+        setChoosenDate(
+            [
+                types.Days[date.getDay()].toLocaleLowerCase(),
+                date.getDate(),
+                types.Months[date.getMonth()].toLocaleLowerCase(),
+                date.getFullYear(),
+            ].join(' '),
+        )
+
+        handleNext({
+            reservationDate: date.toLocaleDateString('en-GB'),
+        } as types.Reservation)
+    }
+
     return (
         <StepperContext.Provider
-            value={{ activeStep, addFormData, handleBack, handleNext }}
+            value={{
+                activeStep,
+                addFormData,
+                handleBack,
+                handleNext,
+                globalData,
+                setDate,
+                choosenDate,
+            }}
         >
             {props.children}
         </StepperContext.Provider>
