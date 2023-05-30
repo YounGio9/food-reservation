@@ -4,7 +4,7 @@ export interface Stepper {
     handleBack: () => void
     addFormData: (data: Reservation) => void
     globalData: Reservation
-    choosenDate: string | null
+    choosenDateInString: string | null
     setDate: (date: Date) => void
 }
 
@@ -45,7 +45,7 @@ export enum Days {
 }
 
 export enum Months {
-    'Janvier' = 1,
+    'Janvier' = 0,
     'Février',
     'Mars',
     'Avril',

@@ -3,11 +3,11 @@ import { useStepper } from '../../../contexts/StepperContext'
 import BackButton from '../Buttons/BackButton'
 
 function Time() {
-    const { choosenDate } = useStepper()
+    const { choosenDateInString } = useStepper()
     return (
         <div>
             <h2 className='relative text-white pb-6 font-bold text-center bg-[rgb(220,0,68)] pt-4 z-10 select-none'>
-                {choosenDate}
+                {choosenDateInString}
             </h2>
 
             <BackButton label='Modifier la date' />

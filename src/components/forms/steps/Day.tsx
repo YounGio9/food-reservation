@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'react-calendar/dist/Calendar.css'
 import Calendar from 'react-calendar'
 import { useStepper } from '../../../contexts/StepperContext'
 
 function DayStep() {
-    const { handleBack, setDate } = useStepper()
+    const { handleBack, setDate, globalData } = useStepper()
+    const [activeDate, setActiveDate] = React.useState<Date>()
+
+    useEffect(() => {
+        setActiveDate(
+            new Date(globalData.reservationDate).toString() === 'Invalid Date'
+                ? new Date()
+                : new Date(globalData.reservationDate),
+        )
+    }, [])
+
+    console.log('activeDate', activeDate)
 
     return (
         <div>
             <Calendar
-                value={new Date()}
+                value={activeDate}
                 tileClassName={({ date }) =>
                     ![0, 1].includes(date.getDay()) && date >= new Date()
                         ? 'available'
