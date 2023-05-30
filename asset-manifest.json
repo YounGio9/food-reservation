@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/food-reservation/static/css/main.f166edbb.css",
+    "main.js": "/food-reservation/static/js/main.01893faf.js",
+    "static/css/343.1f2ba395.chunk.css": "/food-reservation/static/css/343.1f2ba395.chunk.css",
+    "static/js/343.fb49e320.chunk.js": "/food-reservation/static/js/343.fb49e320.chunk.js",
+    "static/js/787.1f9f7cc1.chunk.js": "/food-reservation/static/js/787.1f9f7cc1.chunk.js",
+    "static/js/546.1d363b5e.chunk.js": "/food-reservation/static/js/546.1d363b5e.chunk.js",
+    "static/media/logo.png": "/food-reservation/static/media/logo.ea6d34a8f342d517032d.png",
+    "index.html": "/food-reservation/index.html",
+    "main.f166edbb.css.map": "/food-reservation/static/css/main.f166edbb.css.map",
+    "main.01893faf.js.map": "/food-reservation/static/js/main.01893faf.js.map",
+    "343.1f2ba395.chunk.css.map": "/food-reservation/static/css/343.1f2ba395.chunk.css.map",
+    "343.fb49e320.chunk.js.map": "/food-reservation/static/js/343.fb49e320.chunk.js.map",
+    "787.1f9f7cc1.chunk.js.map": "/food-reservation/static/js/787.1f9f7cc1.chunk.js.map",
+    "546.1d363b5e.chunk.js.map": "/food-reservation/static/js/546.1d363b5e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f166edbb.css",
+    "static/js/main.01893faf.js"
+  ]
+}
