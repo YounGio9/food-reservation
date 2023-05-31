@@ -12,8 +12,6 @@ function StepperProvider(props: {
     const [globalData, setGlobalData] = useState<types.Reservation>(
         {} as types.Reservation,
     )
-    const [choosenDate, setChoosenDate] = useState<Date>()
-
     const [choosenDateInString, setChoosenDateInString] = useState<
         string | null
     >(null)
@@ -57,6 +55,16 @@ function StepperProvider(props: {
         } as types.Reservation)
     }
 
+    const setHour = (hour: types.Schedule) => {
+        console.log('chossen time', hour)
+
+        setChoosenDateInString((prev) => `${prev}  ${hour}`)
+
+        handleNext({
+            reservationTime: hour,
+        } as types.Reservation)
+    }
+
     return (
         <StepperContext.Provider
             value={{
@@ -66,6 +74,7 @@ function StepperProvider(props: {
                 handleNext,
                 globalData,
                 setDate,
+                setHour,
                 choosenDateInString,
             }}
         >

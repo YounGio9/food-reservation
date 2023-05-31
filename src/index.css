@@ -167,6 +167,13 @@ textarea {
     color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
+.available {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    background-color: rgb(68 175 105 / var(--tw-bg-opacity));
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
 .react-calendar__month-view__days {
     display: grid !important;
     grid-template-columns: repeat(7, 1fr) !important;

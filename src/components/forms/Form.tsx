@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
-import { DayStep, Time, Guests } from './steps'
+import { DayStep, Time, Guests, Preferences } from './steps'
 
 function Form() {
     const Steps: types.Step[] = [
@@ -16,6 +16,10 @@ function Form() {
         {
             label: 'Le créneau souhaité',
             element: Time,
+        },
+        {
+            label: 'Vos préférences',
+            element: Preferences,
         },
     ]
 
