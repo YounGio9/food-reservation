@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/food-reservation/static/css/main.c53e858d.css",
-    "main.js": "/food-reservation/static/js/main.7287a79e.js",
-    "static/css/264.0cb0332a.chunk.css": "/food-reservation/static/css/264.0cb0332a.chunk.css",
-    "static/js/264.05918408.chunk.js": "/food-reservation/static/js/264.05918408.chunk.js",
+    "main.css": "/food-reservation/static/css/main.5b8c1a0e.css",
+    "main.js": "/food-reservation/static/js/main.74afa1db.js",
+    "static/css/556.fcef9d34.chunk.css": "/food-reservation/static/css/556.fcef9d34.chunk.css",
+    "static/js/556.7dd5b5e1.chunk.js": "/food-reservation/static/js/556.7dd5b5e1.chunk.js",
     "static/js/787.1f9f7cc1.chunk.js": "/food-reservation/static/js/787.1f9f7cc1.chunk.js",
-    "static/js/370.7c2aa438.chunk.js": "/food-reservation/static/js/370.7c2aa438.chunk.js",
+    "static/js/200.d3b61fcc.chunk.js": "/food-reservation/static/js/200.d3b61fcc.chunk.js",
     "static/media/logo.png": "/food-reservation/static/media/logo.ea6d34a8f342d517032d.png",
     "index.html": "/food-reservation/index.html",
-    "main.c53e858d.css.map": "/food-reservation/static/css/main.c53e858d.css.map",
-    "main.7287a79e.js.map": "/food-reservation/static/js/main.7287a79e.js.map",
-    "264.0cb0332a.chunk.css.map": "/food-reservation/static/css/264.0cb0332a.chunk.css.map",
-    "264.05918408.chunk.js.map": "/food-reservation/static/js/264.05918408.chunk.js.map",
+    "main.5b8c1a0e.css.map": "/food-reservation/static/css/main.5b8c1a0e.css.map",
+    "main.74afa1db.js.map": "/food-reservation/static/js/main.74afa1db.js.map",
+    "556.fcef9d34.chunk.css.map": "/food-reservation/static/css/556.fcef9d34.chunk.css.map",
+    "556.7dd5b5e1.chunk.js.map": "/food-reservation/static/js/556.7dd5b5e1.chunk.js.map",
     "787.1f9f7cc1.chunk.js.map": "/food-reservation/static/js/787.1f9f7cc1.chunk.js.map",
-    "370.7c2aa438.chunk.js.map": "/food-reservation/static/js/370.7c2aa438.chunk.js.map"
+    "200.d3b61fcc.chunk.js.map": "/food-reservation/static/js/200.d3b61fcc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c53e858d.css",
-    "static/js/main.7287a79e.js"
+    "static/css/main.5b8c1a0e.css",
+    "static/js/main.74afa1db.js"
   ]
 }
