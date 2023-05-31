@@ -4,7 +4,7 @@ import Header from '../components/Header'
 function Home() {
     const Form = React.lazy(() => import('../components/forms'))
     return (
-        <div className='w-full h-full font-food bg-transparent text-black'>
+        <div className='w-full h-full relative font-food text-black'>
             <Header />
             <div className='w-full py-1 px-6 text-xl flex items-center justify-between text-white font-semibold font-food'>
                 <p>Feeling Food</p>

@@ -33,7 +33,7 @@ function Form() {
     const activeElementLabel = Steps[activeStep].label
 
     return (
-        <div className='w-full h-auto bg-white font-bold rounded-3xl'>
+        <div className='w-full h-auto bg-white font-bold rounded-3xl mb-20'>
             <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
                 {activeElementLabel}
             </div>

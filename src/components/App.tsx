@@ -3,7 +3,7 @@ import Home from '../pages/Home'
 
 function App() {
     return (
-        <div className='App w-full h-full'>
+        <div className='App relative min-h-[100vh]'>
             <Home />
         </div>
     )
