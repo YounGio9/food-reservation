@@ -33,7 +33,7 @@ export interface Reservation {
    firstname: string
    lastname: string
    email: string
-   phoneNumber: number
+   phoneNumber: number | string
    country: string
 }
 
