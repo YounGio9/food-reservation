@@ -35,11 +35,9 @@ function Contact() {
          const phoneInputField = document.getElementById('phoneNumber')
 
          var iti = window.intlTelInputGlobals.getInstance(phoneInputField as Element)
-
          const countryData = iti.getSelectedCountryData()
 
          vals.country = countryData.name
-
          vals.phoneNumber = `+${countryData.dialCode} ${vals.phoneNumber}`
 
          console.log(vals)
@@ -54,19 +52,12 @@ function Contact() {
    } as FormikConfig<types.Reservation>)
 
    const handleChangePhoneNumber = (e: React.ChangeEvent) => {
+      formik.handleChange(e)
       const phoneInputField = document.getElementById('phoneNumber')
 
       var iti = window.intlTelInputGlobals.getInstance(phoneInputField as Element)
 
-      console.log(iti)
-
-      if (iti.isValidNumber()) {
-         setError(false)
-         console.log('phone number is valid')
-      } else {
-         setError(true)
-         console.log('phone number is invalid')
-      }
+      setError(iti.isValidNumber() ? false : true)
    }
 
    React.useEffect(() => {
@@ -148,11 +139,7 @@ function Contact() {
                      name='phoneNumber'
                      error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                      helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                     onChange={(e: React.ChangeEvent) => {
-                        formik.handleChange(e)
-
-                        handleChangePhoneNumber(e)
-                     }}
+                     onChange={handleChangePhoneNumber}
                   />
                </FormControl>
                {error && String(formik.values.phoneNumber).length > 0 && (

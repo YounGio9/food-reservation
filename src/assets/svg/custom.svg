@@ -1,0 +1,8 @@
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" class="z-20 bg-white select-none transition-colors
+                  h-8
+                  text-barestho-blue cursor-pointer hover:text-barestho-red
+                "><style>
+    .cls-1-pen-icon{stroke-linecap:round;stroke-linejoin:round;}
+    .cls-1-pen-icon,.cls-2-pen-icon{fill:none;stroke:currentColor;stroke-width:7px;}
+    .cls-2-pen-icon{stroke-miterlimit:10;}
+    </style><circle class="cls-2-pen-icon" cx="75" cy="75" r="68.27"></circle><path class="cls-1-pen-icon" d="M44.31,34.96h0c6.09,0,11.03,4.94,11.03,11.03v7.68h-22.07v-7.68c0-6.09,4.94-11.03,11.03-11.03Z" transform="translate(-18.35 44.31) rotate(-45)"></path><rect class="cls-1-pen-icon" x="63.4" y="41.19" width="22.07" height="66.49" transform="translate(-30.83 74.43) rotate(-45)"></rect><polygon class="cls-1-pen-icon" points="105.74 90.14 90.14 105.74 112.45 112.45 105.74 90.14"></polygon><line class="cls-1-pen-icon" x1="98.21" y1="97.67" x2="68.32" y2="67.78"></line><line class="cls-1-pen-icon" x1="44.31" y1="104.18" x2="65.77" y2="82.73"></line><line class="cls-1-pen-icon" x1="83.69" y1="64.81" x2="105.15" y2="43.35"></line></svg>

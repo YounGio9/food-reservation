@@ -1,0 +1,7 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 150 150" class="z-20 bg-white select-none transition-colors
+                  h-8
+                  text-barestho-blue cursor-pointer hover:text-barestho-red
+                "><style>
+    .st0-clock-icon{fill:none;stroke:currentColor;stroke-width:7;stroke-miterlimit:10;}
+    .st1-clock-icon{fill:none;stroke:currentColor;stroke-width:7;stroke-linejoin:round;}
+    </style><circle class="st0-clock-icon" cx="75" cy="75" r="68.3"></circle><circle class="st1-clock-icon" cx="75" cy="75" r="6.7"></circle><line class="st1-clock-icon" x1="79.7" y1="70.3" x2="103.7" y2="46.3"></line><line class="st1-clock-icon" x1="112.4" y1="37.5" x2="122.7" y2="27.3"></line><line class="st1-clock-icon" x1="79.7" y1="79.7" x2="103.7" y2="103.7"></line><line class="st1-clock-icon" x1="112.4" y1="112.4" x2="122.7" y2="122.6"></line><line class="st1-clock-icon" x1="128.8" y1="75" x2="143.3" y2="75"></line></svg>

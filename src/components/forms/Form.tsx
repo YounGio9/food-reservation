@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
-import { DayStep, Time, Guests, Preferences, Contact } from './steps'
+import Banner from './Banner'
+import { DayStep, Time, Guests, Preferences, Contact, Confirm } from './steps'
 
 function Form() {
    const Steps: types.Step[] = [
@@ -25,6 +26,10 @@ function Form() {
          label: 'Vos coordonnées',
          element: Contact,
       },
+      {
+         label: 'On y est presque...',
+         element: Confirm,
+      },
    ]
 
    const { activeStep }: types.Stepper = useStepper()
@@ -38,6 +43,7 @@ function Form() {
 
    return (
       <div className='w-full h-auto bg-white font-bold rounded-3xl mb-20'>
+         <Banner />
          <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
             {activeElementLabel}
          </div>
