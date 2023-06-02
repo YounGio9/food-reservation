@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/food-reservation/static/css/main.5b8c1a0e.css",
-    "main.js": "/food-reservation/static/js/main.74afa1db.js",
-    "static/css/556.fcef9d34.chunk.css": "/food-reservation/static/css/556.fcef9d34.chunk.css",
-    "static/js/556.7dd5b5e1.chunk.js": "/food-reservation/static/js/556.7dd5b5e1.chunk.js",
+    "main.css": "/food-reservation/static/css/main.a75feeea.css",
+    "main.js": "/food-reservation/static/js/main.2cab7869.js",
+    "static/css/376.defd09da.chunk.css": "/food-reservation/static/css/376.defd09da.chunk.css",
+    "static/js/376.97aa0529.chunk.js": "/food-reservation/static/js/376.97aa0529.chunk.js",
     "static/js/787.1f9f7cc1.chunk.js": "/food-reservation/static/js/787.1f9f7cc1.chunk.js",
-    "static/js/200.d3b61fcc.chunk.js": "/food-reservation/static/js/200.d3b61fcc.chunk.js",
+    "static/js/149.8a28e6f6.chunk.js": "/food-reservation/static/js/149.8a28e6f6.chunk.js",
     "static/media/logo.png": "/food-reservation/static/media/logo.ea6d34a8f342d517032d.png",
+    "static/media/guest.svg": "/food-reservation/static/media/guest.857fbd459a15823994d0b3e2ea7b1599.svg",
+    "static/media/finish.svg": "/food-reservation/static/media/finish.4c5462f1cdef739fdf2f4dcfaeb70e08.svg",
+    "static/media/custom.svg": "/food-reservation/static/media/custom.74a723cc313312d65036df3f5eb1bc6e.svg",
+    "static/media/time.svg": "/food-reservation/static/media/time.332e4aae766b099fddb3bddfc36049c0.svg",
     "index.html": "/food-reservation/index.html",
-    "main.5b8c1a0e.css.map": "/food-reservation/static/css/main.5b8c1a0e.css.map",
-    "main.74afa1db.js.map": "/food-reservation/static/js/main.74afa1db.js.map",
-    "556.fcef9d34.chunk.css.map": "/food-reservation/static/css/556.fcef9d34.chunk.css.map",
-    "556.7dd5b5e1.chunk.js.map": "/food-reservation/static/js/556.7dd5b5e1.chunk.js.map",
+    "main.a75feeea.css.map": "/food-reservation/static/css/main.a75feeea.css.map",
+    "main.2cab7869.js.map": "/food-reservation/static/js/main.2cab7869.js.map",
+    "376.defd09da.chunk.css.map": "/food-reservation/static/css/376.defd09da.chunk.css.map",
+    "376.97aa0529.chunk.js.map": "/food-reservation/static/js/376.97aa0529.chunk.js.map",
     "787.1f9f7cc1.chunk.js.map": "/food-reservation/static/js/787.1f9f7cc1.chunk.js.map",
-    "200.d3b61fcc.chunk.js.map": "/food-reservation/static/js/200.d3b61fcc.chunk.js.map"
+    "149.8a28e6f6.chunk.js.map": "/food-reservation/static/js/149.8a28e6f6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b8c1a0e.css",
-    "static/js/main.74afa1db.js"
+    "static/css/main.a75feeea.css",
+    "static/js/main.2cab7869.js"
   ]
 }
