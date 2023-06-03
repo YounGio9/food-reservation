@@ -22,7 +22,7 @@ export interface Step {
    element: () => React.JSX.Element
 }
 
-export interface Reservation {
+export interface Reservation extends Client {
    adultsGuests: number
    childrenGuests: number
    reservationDate: string
@@ -30,11 +30,14 @@ export interface Reservation {
    typeOfMeal: string
    options?: string[]
    comment?: string
+}
+
+export interface Client {
    firstname: string
    lastname: string
    email: string
    phoneNumber: number | string
-   country: string
+   country?: string
 }
 
 export type Schedule =

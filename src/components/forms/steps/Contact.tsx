@@ -19,7 +19,7 @@ function Contact() {
       phoneNumber: yup.string().required(),
    })
 
-   const initialValues: Partial<types.Reservation> = {
+   const initialValues: types.Client = {
       lastname: '',
       firstname: '',
       email: '',
@@ -42,14 +42,14 @@ function Contact() {
 
          console.log(vals)
 
-         handleNext(vals)
+         handleNext(vals as types.Reservation)
 
          /*
           *
           *  Belgique // 487512369
           * */
       },
-   } as FormikConfig<types.Reservation>)
+   } as FormikConfig<types.Client>)
 
    const handleChangePhoneNumber = (e: React.ChangeEvent) => {
       formik.handleChange(e)
@@ -63,7 +63,6 @@ function Contact() {
    React.useEffect(() => {
       const phoneInputField = document.getElementById('phoneNumber')
 
-      // eslint-disable-next-line
       window.intlTelInput(phoneInputField as Element, {
          onlyCountries: ['DE', 'BE', 'ES', 'FR', 'GB', 'IT', 'LU', 'NL', 'CH'],
          localizedCountries: {

@@ -9,12 +9,21 @@ function StepperProvider(props: { children: types.contextChildren; numberOfSteps
    const [globalData, setGlobalData] = useState<types.Reservation>({} as types.Reservation)
    const [choosenDateInString, setChoosenDateInString] = useState<string | null>(null)
 
-   const addFormData = (data: Partial<types.Reservation>) => {
+   const addFormData = async (data: Partial<types.Reservation>) => {
       if (activeStep <= props.numberOfSteps) {
          setGlobalData((prev) => ({
             ...prev,
             ...data,
          }))
+      } else {
+         await fetch({
+            method: 'POST',
+            url: 'http://localhost:8000/api/reservations',
+            body: data,
+         } as RequestInfo)
+            .then((res) => res.json())
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
       }
    }
 
