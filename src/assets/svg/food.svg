@@ -1,0 +1,5 @@
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" class="h-8 shrink-0"><defs><style>
+    .cls-1-dish-icon{stroke-linecap:round;stroke-linejoin:round;}
+    .cls-1-dish-icon,.cls-2-dish-icon{fill:none;stroke:currentcolor;stroke-width:7px;}
+    .cls-2-dish-icon{stroke-miterlimit:10;}
+    </style></defs><circle class="cls-2-dish-icon" cx="75" cy="75" r="68.27"></circle><line class="cls-1-dish-icon" x1="14.09" y1="105.86" x2="114.87" y2="105.86"></line><line class="cls-1-dish-icon" x1="19.98" y1="115.43" x2="107.13" y2="115.43"></line><path class="cls-1-dish-icon" d="M8.93,92.26c5.93-21.02,25.25-36.43,48.16-36.43,27.63,0,50.04,22.4,50.04,50.04"></path><circle class="cls-1-dish-icon" cx="57.09" cy="47.64" r="8.19"></circle><path class="cls-1-dish-icon" d="M88.64,46.58c0,10.21,8.28,18.48,18.48,18.48s18.48-8.28,18.48-18.48h-36.97Z"></path><polyline class="cls-1-dish-icon" points="107.13 65.07 107.13 88.08 117.28 88.08"></polyline></svg>
