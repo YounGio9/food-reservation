@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfeeling_food=self.webpackChunkfeeling_food||[]).push([[334],{334:function(e,n,f){f.r(n);f(2791);var i=f(184);n.default=function(){return(0,i.jsx)("div",{children:"Reservations"})}}}]);
+//# sourceMappingURL=334.2e77e5cc.chunk.js.map

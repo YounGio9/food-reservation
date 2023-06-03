@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/334.2e77e5cc.chunk.js","mappings":"4IAMA,UAJA,WACG,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,gBACf,C","sources":["pages/admin/Reservations.tsx"],"sourcesContent":["import React from 'react'\n\nfunction Reservations() {\n   return <div>Reservations</div>\n}\n\nexport default Reservations\n"],"names":["_jsx","children"],"sourceRoot":""}
