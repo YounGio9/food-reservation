@@ -9,7 +9,7 @@ function Clients() {
    const [totalPages, setTotalPages] = React.useState<number>(1)
    const [pageData, setPageData] = React.useState<types.Client[]>([] as types.Client[])
 
-   const dataPerPage: number = 8
+   const dataPerPage: number = 9
 
    const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) => {
       setPage(value)
@@ -43,12 +43,12 @@ function Clients() {
                />
             </div>
 
-            <div className='w-full h-[80%] bg-white'>
-               {pageData.map((client: types.Client) => (
-                  <ClientCard client={client} />
+            <div className='w-full h-auto bg-white'>
+               {pageData.map((client: types.Client, idx: number) => (
+                  <ClientCard key={(client.phoneNumber as number) + idx} client={client} />
                ))}
             </div>
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center justify-center my-3'>
                <Pagination
                   color='primary'
                   page={page}
