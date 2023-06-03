@@ -9,7 +9,7 @@ interface Props {
 function Layout({ children }: Props) {
    const navigate = useNavigate()
    return (
-      <div className='w-screen h-screen font-food bg-blue text-white text-sm overflow-hidden'>
+      <div className='w-screen h-auto lg:h-screen font-food bg-blue text-white text-sm overflow-hidden'>
          <div className='bg-black h-14 flex justify-end'>
             <button className=' mx-4' onClick={() => navigate('/admin/reservations')}>
                Réservations
