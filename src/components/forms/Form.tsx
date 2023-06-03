@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
 import Banner from './Banner'
-import { DayStep, Time, Guests, Preferences, Contact, Confirm } from './steps'
+import { DayStep, Time, Guests, Preferences, Contact, Confirm, Finish } from './steps'
 
 function Form() {
    const Steps: types.Step[] = [
@@ -30,11 +30,15 @@ function Form() {
          label: 'On y est presque...',
          element: Confirm,
       },
+      {
+         label: 'Merci pour votre réservation',
+         element: Finish,
+      },
    ]
 
    const { activeStep }: types.Stepper = useStepper()
 
-   useEffect(() => {
+   React.useEffect(() => {
       console.log(activeStep)
    }, [activeStep])
 

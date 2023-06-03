@@ -1,5 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 import { types } from '../helpers'
+import client from '../helpers/client'
 
 const StepperContext = createContext({} as types.Stepper)
 
@@ -9,12 +10,19 @@ function StepperProvider(props: { children: types.contextChildren; numberOfSteps
    const [globalData, setGlobalData] = useState<types.Reservation>({} as types.Reservation)
    const [choosenDateInString, setChoosenDateInString] = useState<string | null>(null)
 
-   const addFormData = (data: Partial<types.Reservation>) => {
-      if (activeStep <= props.numberOfSteps) {
-         setGlobalData((prev) => ({
-            ...prev,
-            ...data,
-         }))
+   const addFormData = async (data: Partial<types.Reservation>) => {
+      setGlobalData((prev) => ({
+         ...prev,
+         ...data,
+      }))
+
+      if (activeStep > props.numberOfSteps) {
+         console.log('PAYLOAD \n', globalData)
+
+         await client
+            .post('/reservations', globalData)
+            .then((res) => console.log('API RESPONSE \n', res.data))
+            .catch((err) => console.log(err))
       }
    }
 

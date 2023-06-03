@@ -23,6 +23,7 @@ function Banner() {
             {activeStep === 3 && icons[2]}
             {activeStep === 4 && <HiUserCircle size={40} />}
             {activeStep === 5 && icons[3]}
+            {activeStep === 6 && icons[3]}
          </div>
       </div>
    )
