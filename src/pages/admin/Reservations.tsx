@@ -73,13 +73,13 @@ function Reservations() {
             week={{
                weekDays: [0, 2, 3, 4, 5, 6],
                weekStartOn: 6,
-               startHour: 9,
+               startHour: 11,
                endHour: 23,
                step: 30,
                cellRenderer: ({ height, start, onClick, ...props }) => {
                   // Fake some condition up
                   const hour = start.getHours()
-                  const disabled = hour === 14
+                  const disabled = [14, 15, 16, 17, 18].includes(hour)
                   const restProps = disabled ? {} : props
                   return (
                      <Button
@@ -90,7 +90,7 @@ function Reservations() {
                         }}
                         onClick={() => {
                            if (disabled) {
-                              return alert('Opss')
+                              return alert('Feeling Food est fermé de 14h à 19h')
                            }
                            onClick()
                         }}
