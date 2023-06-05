@@ -194,3 +194,9 @@ textarea {
 .react-calendar__tile:disabled {
    background-color: #fff !important;
 }
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+   user-select: none;
+   cursor: none;
+   pointer-events: none;
+}

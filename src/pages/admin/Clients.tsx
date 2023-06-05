@@ -17,6 +17,16 @@ function Clients() {
       setPage(value)
    }
 
+   const treatData = (data: types.Client[]) => {
+      console.log(data)
+      setTotalPages(Math.ceil(data.length / dataPerPage))
+   }
+
+   const divideData = (data: types.Client[]) => {
+      const prev = (page - 1) * dataPerPage
+      setPageData(data.slice(prev, prev + dataPerPage))
+   }
+
    const fetchData = async () => {
       setLoading(true)
       const res = await client.get('/clients')
@@ -26,16 +36,7 @@ function Clients() {
       setLoading(false)
    }
 
-   const treatData = (data: types.Client[]) => {
-      console.log(data)
-      setTotalPages(Math.ceil(data.length / dataPerPage))
-      console.log(data.length)
-   }
-
-   const divideData = (data: types.Client[]) => {
-      const prev = (page - 1) * dataPerPage
-      setPageData(data.slice(prev, prev + dataPerPage))
-   }
+   // const getCountryFlag = (number: )
 
    React.useEffect(() => {
       fetchData()
