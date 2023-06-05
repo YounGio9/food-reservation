@@ -70,12 +70,11 @@ function Reservations() {
          <Scheduler
             events={data}
             view='week'
-            week={{
+            month={{
                weekDays: [0, 2, 3, 4, 5, 6],
                weekStartOn: 6,
                startHour: 11,
                endHour: 23,
-               step: 30,
                cellRenderer: ({ height, start, onClick, ...props }) => {
                   // Fake some condition up
                   const hour = start.getHours()
