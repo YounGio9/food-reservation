@@ -7,6 +7,7 @@ export interface Stepper {
    choosenDateInString: string | null
    setDate: (date: Date) => void
    setHour: (time: Schedule) => void
+   loading: boolean
 }
 
 export type contextChildren =

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
+import Loading from '../UI/Loading'
 import Banner from './Banner'
 import { DayStep, Time, Guests, Preferences, Contact, Confirm, Finish } from './steps'
 
@@ -36,7 +37,7 @@ function Form() {
       },
    ]
 
-   const { activeStep }: types.Stepper = useStepper()
+   const { activeStep, loading }: types.Stepper = useStepper()
 
    React.useEffect(() => {
       console.log(activeStep)
@@ -46,7 +47,8 @@ function Form() {
    const activeElementLabel = Steps[activeStep].label
 
    return (
-      <div className='w-full h-auto bg-white font-bold rounded-3xl mb-20'>
+      <div className='w-full h-auto relative bg-white font-bold rounded-3xl mb-20'>
+         {loading && <Loading />}
          <Banner />
          <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
             {activeElementLabel}

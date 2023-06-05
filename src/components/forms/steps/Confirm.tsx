@@ -12,6 +12,7 @@ import BackButton from '../Buttons/BackButton'
 
 function Confirm() {
    const { choosenDateInString, activeStep, globalData, handleNext } = useStepper()
+
    return (
       <div>
          {activeStep === 5 && (

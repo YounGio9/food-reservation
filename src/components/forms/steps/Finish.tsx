@@ -7,7 +7,7 @@ import Confirm from './Confirm'
 function Finish() {
    return (
       <>
-         <div className='px-6 mt-6 mb-5'>
+         <div className='px-6 relative mt-6 mb-5'>
             <div className='flex items-center'>
                <img src={food} alt='' width={35} height={35} />
                <ul className='w-full pl-4 pr-1 text-sm mb-4 select-none'>

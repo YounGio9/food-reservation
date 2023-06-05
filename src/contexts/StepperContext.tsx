@@ -1,14 +1,18 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React from 'react'
 import { types } from '../helpers'
 import client from '../helpers/client'
 
-const StepperContext = createContext({} as types.Stepper)
+const StepperContext = React.createContext({} as types.Stepper)
 
 function StepperProvider(props: { children: types.contextChildren; numberOfSteps: number }) {
-   const [activeStep, setActiveStep] = useState<number>(0)
+   const [activeStep, setActiveStep] = React.useState<number>(0)
 
-   const [globalData, setGlobalData] = useState<types.Reservation>({} as types.Reservation)
-   const [choosenDateInString, setChoosenDateInString] = useState<string | null>(null)
+   const [globalData, setGlobalData] = React.useState<types.Reservation>(
+      {} as types.Reservation,
+   )
+   const [choosenDateInString, setChoosenDateInString] = React.useState<string | null>(null)
+
+   const [loading, setLoading] = React.useState(false)
 
    const addFormData = async (data: Partial<types.Reservation>) => {
       setGlobalData((prev) => ({
@@ -19,14 +23,18 @@ function StepperProvider(props: { children: types.contextChildren; numberOfSteps
       if (activeStep > props.numberOfSteps) {
          console.log('PAYLOAD \n', globalData)
 
+         setLoading(true)
+
          await client
             .post('/reservations', globalData)
             .then((res) => console.log('API RESPONSE \n', res.data))
             .catch((err) => console.log(err))
+
+         setLoading(false)
       }
    }
 
-   useMemo(() => {
+   React.useMemo(() => {
       console.log(globalData)
    }, [globalData])
 
@@ -77,6 +85,7 @@ function StepperProvider(props: { children: types.contextChildren; numberOfSteps
             setDate,
             setHour,
             choosenDateInString,
+            loading,
          }}
       >
          {props.children}
