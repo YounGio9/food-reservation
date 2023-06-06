@@ -29,7 +29,7 @@ export interface Reservation extends Client {
    reservationDate: string
    reservationTime: string
    typeOfMeal: string
-   options?: string[]
+   options?: string
    comment?: string
 }
 
