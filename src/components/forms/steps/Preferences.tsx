@@ -116,7 +116,7 @@ function Preferences() {
                <NextButton
                   datas={
                      {
-                        options: selectedOptions,
+                        options: JSON.stringify(selectedOptions),
                         typeOfMeal: selectedMeal,
                         comment,
                      } as types.Reservation

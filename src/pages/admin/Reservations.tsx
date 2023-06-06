@@ -68,8 +68,76 @@ function Reservations() {
    ) : (
       <div className='text-black h-full overflow-scroll'>
          <Scheduler
+            editable={false}
+            deletable={false}
             events={data}
             view='week'
+            day={{
+               startHour: 11,
+               endHour: 23,
+               step: 60,
+               cellRenderer: ({ height, start, onClick, ...props }) => {
+                  // Fake some condition up
+                  const hour = start.getHours()
+                  const minutes = start.getMinutes()
+                  const disabled = [15, 16, 17, 18].includes(hour)
+                  const restProps = disabled ? {} : props
+                  return (
+                     <Button
+                        style={{
+                           height: '100%',
+                           background:
+                              disabled || (hour === 14 && minutes === 30)
+                                 ? '#eee'
+                                 : 'transparent',
+                           cursor: disabled ? 'not-allowed' : 'pointer',
+                        }}
+                        onClick={() => {
+                           if (disabled) {
+                              return alert('Feeling Food est fermé de 14h à 19h')
+                           }
+                           onClick()
+                        }}
+                        disableRipple={disabled}
+                        {...restProps}
+                     ></Button>
+                  )
+               },
+            }}
+            week={{
+               weekDays: [0, 3, 4, 5, 6],
+               step: 30,
+               weekStartOn: 6,
+               startHour: 11,
+               endHour: 23,
+               cellRenderer: ({ height, start, onClick, ...props }) => {
+                  // Fake some condition up
+                  const hour = start.getHours()
+                  const minutes = start.getMinutes()
+                  const disabled = [15, 16, 17, 18].includes(hour)
+                  const restProps = disabled ? {} : props
+                  return (
+                     <Button
+                        style={{
+                           height: '100%',
+                           background:
+                              disabled || (hour === 14 && minutes === 30)
+                                 ? '#eee'
+                                 : 'transparent',
+                           cursor: disabled ? 'not-allowed' : 'pointer',
+                        }}
+                        onClick={() => {
+                           if (disabled) {
+                              return alert('Feeling Food est fermé de 14h à 19h')
+                           }
+                           onClick()
+                        }}
+                        disableRipple={disabled}
+                        {...restProps}
+                     ></Button>
+                  )
+               },
+            }}
             month={{
                weekDays: [0, 2, 3, 4, 5, 6],
                weekStartOn: 6,
@@ -78,13 +146,17 @@ function Reservations() {
                cellRenderer: ({ height, start, onClick, ...props }) => {
                   // Fake some condition up
                   const hour = start.getHours()
-                  const disabled = [14, 15, 16, 17, 18].includes(hour)
+                  const minutes = start.getMinutes()
+                  const disabled = [15, 16, 17, 18].includes(hour)
                   const restProps = disabled ? {} : props
                   return (
                      <Button
                         style={{
                            height: '100%',
-                           background: disabled ? '#eee' : 'transparent',
+                           background:
+                              disabled || (hour === 14 && minutes === 30)
+                                 ? '#eee'
+                                 : 'transparent',
                            cursor: disabled ? 'not-allowed' : 'pointer',
                         }}
                         onClick={() => {
