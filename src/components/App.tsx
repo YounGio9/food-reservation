@@ -6,7 +6,7 @@ import Admin from '../pages/admin'
 function App() {
    return (
       <Router>
-         <div className='App relative justify-center flex min-h-[100vh]'>
+         <div className='App relative flex min-h-[100vh]'>
             <Routes>
                <Route path='/' element={<Home />} />
                <Route path='/admin/*' element={<Admin />} />

@@ -24,8 +24,11 @@ body {
 .bg-gradient {
    background-image: linear-gradient(to left, #a90a47, 80%, #c73f73);
 }
-.App {
-   background-image: linear-gradient(to bottom, #1c6899 50%, #1c6899, #900c3f 50%);
+
+@media (min-width: 750px) {
+   .App {
+      background-image: linear-gradient(to right, #1c6899 50%, #1c6899, #900c3f 50%);
+   }
 }
 
 body {
