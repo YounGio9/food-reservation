@@ -56,7 +56,9 @@ export type Schedule =
    | '22:00'
 
 export enum Days {
-   'Mardi' = 2,
+   'Dimanche' = 0,
+   'Lundi',
+   'Mardi',
    'Mercredi',
    'Jeudi',
    'Vendredi',

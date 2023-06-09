@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'react-calendar-timeline/lib/Timeline.css'
 import moment from 'moment'
+import 'moment/locale/fr'
 
 import Timeline, {
    TimelineHeaders,
@@ -10,6 +11,10 @@ import Timeline, {
 } from 'react-calendar-timeline'
 import generateFakeData from './generateFakeData'
 import ReservationList from '../../components/ReservationList'
+import { Modal } from 'antd'
+import { IoList } from 'react-icons/io5'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { getDateInFrench } from '../../helpers/functions'
 
 var keys = {
    groupIdKey: 'id',
@@ -25,65 +30,160 @@ var keys = {
 }
 
 export default function Reservations() {
-   const { groups, items } = generateFakeData(150, 150, 1)
+   const { groups } = generateFakeData(150, 150, 1)
 
-   // const defaultTimeStart = moment().startOf('day').toDate();
-   // defaultTimeStart.setHours(9, 0, 0)
-   // const defaultTimeEnd = moment().startOf('day').add(1, 'day').toDate();
+   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+   const [activeItemData, setActiveItemData] = React.useState({})
+   const [isOpenReservationList, setIsOpenReservationList] = React.useState<boolean>(false)
 
-   const defaultTimeStart = new Date()
-   defaultTimeStart.setHours(9, 0, 0) // Set the minimum time to 9:00 AM
+   const [daysInFuture, setDaysInFuture] = React.useState<number>(0)
 
-   const defaultTimeEnd = new Date()
-   defaultTimeEnd.setHours(23, 0, 0)
+   const [timeStart, setTimeStart] = React.useState<moment.Moment>(moment())
+
+   const defaultTimeStart = moment()
+      .startOf('day')
+      .add(0 + daysInFuture, 'day')
+      .toDate()
+   // Set the minimum time to 9:00 AM
+
+   const defaultTimeEnd = moment()
+      .startOf('day')
+      .add(1 + daysInFuture, 'day')
+      .toDate()
+   // defaultTimeEnd.hour(23)
+
+   const handleNext = () => {
+      setTimeStart((prev) => prev.clone().add(1, 'day'))
+   }
+
+   const handleBack = () => {
+      setTimeStart((prev) => prev.clone().subtract(1, 'day'))
+   }
+
+   React.useEffect(() => {
+      console.log(timeStart)
+      console.log(timeStart.toDate())
+   }, [timeStart])
 
    const events: TimelineItemBase<any>[] = [
       {
          id: 1,
          title: 'Event',
          start_time: new Date('2023 6 8 10:00'),
-         end_time: new Date('2023 6 8 11:30'),
+         end_time: new Date('2023 6 8 12:00'),
          group: 2,
+         className: 'event',
+
+         // Today at 10 PM
+      },
+      {
+         id: 2,
+         title: 'Event',
+         start_time: new Date('2023 6 8 15:00'),
+         end_time: new Date('2023 6 8 17:00'),
+         group: 4,
+         className: 'event',
+
+         // Today at 10 PM
+      },
+      {
+         id: 3,
+         title: 'Event',
+         start_time: new Date('2023 6 8 17:00'),
+         end_time: new Date('2023 6 8 19:00'),
+         group: 6,
+         className: 'event',
 
          // Today at 10 PM
       },
    ]
 
    return (
-      <div className='flex mt-12 justify-center'>
-         <div className='barestho-scrollable reservations-list mr-12 w-72'>
-            <ReservationList />
+      <div className='flex flex-col'>
+         <div className='w-full flex items-center justify-center mt-5'>
+            <div className=' w-72 bg-[#dc0044] flex rounded-full justify-between items-center p-2 text-lg'>
+               <button className=' hover:opacity-50' onClick={handleBack}>
+                  <FiChevronLeft />
+               </button>
+
+               <button className=' hover:opacity-50 font-bold'>
+                  {getDateInFrench(timeStart.toDate())}
+               </button>
+
+               <button className=' hover:opacity-50' onClick={handleNext}>
+                  <FiChevronRight />
+               </button>
+            </div>
          </div>
-         <div className='bg-white w-3/4'>
-            <div className='w-full'>
-               <Timeline
-                  groups={groups}
-                  items={events as TimelineItemBase<any>[]}
-                  keys={keys}
-                  sidebarContent={<div>Above The Left</div>}
-                  itemTouchSendsClick={false}
-                  stackItems
-                  itemHeightRatio={0.75}
-                  canMove={false}
-                  buffer={0}
-                  canResize={false}
-                  defaultTimeStart={defaultTimeStart}
-                  defaultTimeEnd={defaultTimeEnd}
-               >
-                  <TimelineHeaders className='sticky'>
-                     <SidebarHeader>
-                        {({ getRootProps }) => {
-                           return (
-                              <div className='rct-sidebar-header' {...getRootProps()}>
-                                 Left
-                              </div>
-                           )
-                        }}
-                     </SidebarHeader>
-                     <DateHeader unit='primaryHeader' className='rct-primary' />
-                     <DateHeader className='rct-label' />
-                  </TimelineHeaders>
-               </Timeline>
+
+         <div className='flex mt-5 justify-center'>
+            <Modal
+               title='Basic Modal'
+               cancelText={false}
+               centered
+               onCancel={() => setIsModalOpen(false)}
+               open={isModalOpen}
+            >
+               <p>Some contents...</p>
+               <p>Some contents...</p>
+               <p>Some contents...</p>
+            </Modal>
+            {isOpenReservationList && (
+               <div className='barestho-scrollable reservations-list mr-12 w-72'>
+                  <ReservationList />
+               </div>
+            )}
+            <div className='bg-white w-3/4'>
+               <div className='w-full'>
+                  <Timeline
+                     groups={groups}
+                     items={events as TimelineItemBase<any>[]}
+                     keys={keys}
+                     itemTouchSendsClick={false}
+                     stackItems
+                     itemHeightRatio={0.75}
+                     onItemSelect={(id, e, time) => {
+                        console.log(id, e, time)
+                        setActiveItemData({
+                           e,
+                           id,
+                           time,
+                        })
+                        setIsModalOpen(true)
+                     }}
+                     canMove={false}
+                     lineHeight={47}
+                     sidebarWidth={105}
+                     // minResizeWidth={}
+                     canResize={false}
+                     defaultTimeStart={timeStart.startOf('day').toDate()}
+                     defaultTimeEnd={defaultTimeEnd}
+                  >
+                     <TimelineHeaders className='sticky'>
+                        <SidebarHeader>
+                           {({ getRootProps }) => {
+                              return (
+                                 <div
+                                    className='rct-sidebar-header flex items-center justify-center'
+                                    {...getRootProps()}
+                                 >
+                                    <button
+                                       className='border-2 border-white p-2 rounded-full'
+                                       onClick={() =>
+                                          setIsOpenReservationList(!isOpenReservationList)
+                                       }
+                                    >
+                                       <IoList size={23} />
+                                    </button>
+                                 </div>
+                              )
+                           }}
+                        </SidebarHeader>
+                        <DateHeader unit='primaryHeader' className='rct-primary' />
+                        <DateHeader className='rct-label' />
+                     </TimelineHeaders>
+                  </Timeline>
+               </div>
             </div>
          </div>
       </div>
