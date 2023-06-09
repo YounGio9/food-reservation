@@ -206,7 +206,7 @@ p {
 
 .react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
    background: transparent !important;
- }
+}
 
 .reservations-list {
    height: var(--res-container-h);

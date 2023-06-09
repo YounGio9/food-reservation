@@ -36,21 +36,7 @@ export default function Reservations() {
    const [activeItemData, setActiveItemData] = React.useState({})
    const [isOpenReservationList, setIsOpenReservationList] = React.useState<boolean>(false)
 
-   const [daysInFuture, setDaysInFuture] = React.useState<number>(0)
-
    const [timeStart, setTimeStart] = React.useState<moment.Moment>(moment())
-
-   const defaultTimeStart = moment()
-      .startOf('day')
-      .add(0 + daysInFuture, 'day')
-      .toDate()
-   // Set the minimum time to 9:00 AM
-
-   const defaultTimeEnd = moment()
-      .startOf('day')
-      .add(1 + daysInFuture, 'day')
-      .toDate()
-   // defaultTimeEnd.hour(23)
 
    const handleNext = () => {
       setTimeStart((prev) => prev.clone().add(1, 'day'))
@@ -156,8 +142,8 @@ export default function Reservations() {
                      sidebarWidth={105}
                      // minResizeWidth={}
                      canResize={false}
-                     defaultTimeStart={timeStart.startOf('day').toDate()}
-                     defaultTimeEnd={defaultTimeEnd}
+                     visibleTimeStart={timeStart.startOf('day').toDate()}
+                     visibleTimeEnd={timeStart.endOf('day').toDate()}
                   >
                      <TimelineHeaders className='sticky'>
                         <SidebarHeader>
