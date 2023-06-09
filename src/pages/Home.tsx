@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
+import Loading from '../components/UI/Loading'
 
 function Home() {
    const Form = React.lazy(() => import('../components/forms'))
@@ -12,7 +13,7 @@ function Home() {
          </div>
 
          <div className='py-3 px-6 mt-2'>
-            <React.Suspense fallback={<div>Loading ...</div>}>
+            <React.Suspense fallback={<Loading />}>
                <Form />
             </React.Suspense>
          </div>

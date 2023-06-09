@@ -31,6 +31,210 @@ body {
    }
 }
 
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-odd {
+   background: #7e90a664 !important;
+   color: black;
+}
+
+.barestho-mobile-booker-group-header {
+   float: right;
+}
+
+.reservation-item {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   grid-template-rows: auto;
+   grid-template-areas:
+      'header  header  header  header  header '
+      'status  name  name  name  count  '
+      'start   zone  zone  tables  tables '
+      'details details details details details'
+      'other   other   other   other   other  ';
+   cursor: pointer;
+   padding: 0.5em 1em 0 1em;
+   font-size: 0.8em;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   user-select: none;
+   row-gap: 0.5em;
+}
+
+.react-calendar-timeline {
+   border-radius: 20px !important;
+}
+
+.rct-sidebar-header {
+   border-top-left-radius: 10px;
+ }
+
+.reservation-item > .tables {
+   grid-area: tables;
+   justify-self: end;
+}
+.reservation-item .name {
+   grid-area: name;
+}
+
+.reservation-item > .header {
+   grid-area: header;
+   background-color: #252332;
+   color: white;
+   width: calc(100% + 2em);
+   transform: translate(-1em, -0.5em);
+   padding: 0 0.2em;
+   border-radius: 5px;
+   overflow: hidden;
+}
+.reservation-item > .zone {
+   grid-area: zone;
+}
+
+.reservation-item > .start {
+   grid-area: start;
+}
+.reservation-item > .secondary {
+   color: rgba(0, 0, 0, 0.9);
+}
+.reservation-item > .count {
+   grid-area: count;
+   justify-self: end;
+}
+
+.reservation-item > .primary {
+   font-size: 1.1rem;
+}
+
+.reservation-item > * {
+   margin-top: auto;
+   margin-bottom: auto;
+}
+
+.time-separator {
+   background-color: #504f5b;
+   color: white;
+   padding: 0.2em 0.5em;
+   font-size: 0.9em;
+   position: relative;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+}
+
+.barestho-flex {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1em;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-even {
+   background: white;
+   color: black;
+   border: 1px solid black !important;
+}
+
+p {
+   margin: 0 0 1em;
+   line-height: 1.4285em;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row {
+   padding: 0 4px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   box-sizing: content-box;
+   margin: 0;
+   background: white;
+   border-bottom: 1px solid black;
+   height: 49px !important;
+   line-height: 49px;
+}
+
+.barestho-timeline-group-seats {
+   position: absolute;
+   font-size: 13px;
+   bottom: -5px;
+   right: 0;
+}
+
+.barestho-timeline-group-name {
+   position: absolute;
+   font-size: 14px;
+   top: 0;
+   left: 0;
+}
+
+.barestho-group-header {
+   overflow: hidden;
+   padding: 0 !important;
+   background-color: #252332 !important;
+}
+
+.react-calendar-timeline .rct-label .rct-dateHeader {
+   background-color: #f0f0f0;
+   border-left: 1px solid #bbb;
+   border-right: 1px solid #bbb;
+   color: #252332;
+}
+.event {
+   background: #31cb00 !important;
+   height: 100%;
+}
+
+.event:focus {
+   border: 1px solid black !important;
+}
+
+.rct-header-root > div {
+   background-color: #252332;
+}
+.rct-header-root {
+   background: #1c6899 !important;
+}
+.rct-primary {
+   height: 51px !important;
+}
+
+.barestho-reservation-day-list-container {
+   width: 100%;
+   margin: auto;
+}
+
+.reservations-list {
+   height: var(--res-container-h);
+}
+.barestho-scrollable {
+   overflow-y: auto;
+   overflow-x: hidden;
+   border-radius: 5px;
+}
+
+.rct-hl-even,
+.rct-hl-odd {
+   height: 49px !important;
+   border: 1px solid black;
+}
+.react-calendar-timeline .rct-dateHeader.rct-dateHeader-primary {
+   padding: 0 5px;
+   position: absolute;
+   top: 0;
+   font-size: 14px;
+   text-align: center;
+   cursor: pointer;
+   border-left: 2px solid black;
+   color: #ffffff;
+   background-color: #252332 !important;
+   border-bottom: 1px solid black;
+   cursor: pointer;
+}
+
+.barestho-timeline-group-container {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
 body {
    margin: 0;
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
