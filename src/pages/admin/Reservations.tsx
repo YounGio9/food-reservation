@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import 'react-calendar-timeline/lib/Timeline.css'
 import moment from 'moment'
 import 'moment/locale/fr'
@@ -8,6 +8,7 @@ import Timeline, {
    SidebarHeader,
    DateHeader,
    TimelineItemBase,
+   TodayMarker,
 } from 'react-calendar-timeline'
 import generateFakeData from './generateFakeData'
 import ReservationList from '../../components/ReservationList'
@@ -15,6 +16,7 @@ import { Modal } from 'antd'
 import { IoList } from 'react-icons/io5'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { getDateInFrench } from '../../helpers/functions'
+import { FaUser } from 'react-icons/fa'
 
 var keys = {
    groupIdKey: 'id',
@@ -47,37 +49,25 @@ export default function Reservations() {
    }
 
    React.useEffect(() => {
-      console.log(timeStart)
-      console.log(timeStart.toDate())
+      console.log(timeStart.clone().startOf('day').toDate())
+      console.log(timeStart.clone().endOf('day').toDate())
    }, [timeStart])
 
    const events: TimelineItemBase<any>[] = [
       {
          id: 1,
-         title: 'Event',
+         title: (
+            <div className='p-0 w-full h-full flex flex-col'>
+               <span>event</span>
+               <span className='flex items-center justify-end w-full text-xs'>
+                  {' '}
+                  2<FaUser />{' '}
+               </span>
+            </div>
+         ),
          start_time: new Date('2023 6 8 10:00'),
          end_time: new Date('2023 6 8 12:00'),
          group: 2,
-         className: 'event',
-
-         // Today at 10 PM
-      },
-      {
-         id: 2,
-         title: 'Event',
-         start_time: new Date('2023 6 8 15:00'),
-         end_time: new Date('2023 6 8 17:00'),
-         group: 4,
-         className: 'event',
-
-         // Today at 10 PM
-      },
-      {
-         id: 3,
-         title: 'Event',
-         start_time: new Date('2023 6 8 17:00'),
-         end_time: new Date('2023 6 8 19:00'),
-         group: 6,
          className: 'event',
 
          // Today at 10 PM
@@ -87,7 +77,7 @@ export default function Reservations() {
    return (
       <div className='flex flex-col'>
          <div className='w-full flex items-center justify-center mt-5'>
-            <div className=' w-72 bg-[#dc0044] flex rounded-full justify-between items-center p-2 text-lg'>
+            <div className=' w-72 bg-[#dc0044] flex rounded-full justify-between items-center p-2 text-base'>
                <button className=' hover:opacity-50' onClick={handleBack}>
                   <FiChevronLeft />
                </button>
@@ -104,18 +94,31 @@ export default function Reservations() {
 
          <div className='flex mt-5 justify-center'>
             <Modal
-               title='Basic Modal'
-               cancelText={false}
+               className='relative'
+               title='Réservation'
+               width={800}
+               cancelText={'Fermer'}
                centered
                onCancel={() => setIsModalOpen(false)}
                open={isModalOpen}
             >
-               <p>Some contents...</p>
-               <p>Some contents...</p>
-               <p>Some contents...</p>
+               <hr className='absolute top-14 border-t border-grey w-full left-0' />
+               <p className=' mb-1 mt-6 text-xl font-semibold leading-none'>Dubois Sophie</p>
+               <p className='text-[#808080] my-1'>sofinic@hotmail.com</p>
+               <p className='text-[#808080] '>+32 475 27 49 34</p>
+
+               <p className='flex flex-wrap text-base mb-4'>
+                  <p className=' basis-1/3'> samedi 10 juin 2023</p>
+                  <p className=' basis-1/3'> 18:30</p>
+                  <p className=' basis-1/3'>2 (2 adultes)</p>
+                  <p className=' basis-1/3'> Moment détente</p>
+                  <p className=' basis-1/3'> default</p>
+               </p>
+               <p className='border-b border-grey pb-3'>Si possible en terrasse </p>
+               <p className=' text-[#dc0044]'>Table</p>
             </Modal>
             {isOpenReservationList && (
-               <div className='barestho-scrollable reservations-list mr-12 w-72'>
+               <div className='barestho-scrollable reservations-list mr-4 w-72'>
                   <ReservationList />
                </div>
             )}
@@ -139,12 +142,14 @@ export default function Reservations() {
                      }}
                      canMove={false}
                      lineHeight={47}
-                     sidebarWidth={105}
+                     buffer={1}
                      // minResizeWidth={}
+
                      canResize={false}
-                     visibleTimeStart={timeStart.startOf('day').toDate()}
-                     visibleTimeEnd={timeStart.endOf('day').toDate()}
+                     visibleTimeStart={timeStart.clone().startOf('day').toDate()}
+                     visibleTimeEnd={timeStart.clone().endOf('day').toDate()}
                   >
+                     <TodayMarker date={moment().toDate()} />
                      <TimelineHeaders className='sticky'>
                         <SidebarHeader>
                            {({ getRootProps }) => {

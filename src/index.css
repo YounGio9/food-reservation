@@ -179,21 +179,39 @@ p {
    color: #252332;
 }
 .event {
-   background: #31cb00 !important;
+   background: #31CB00 !important;
+   line-height: 19.5px !important;
+   
    height: 47px !important;
+   
    /* top: 10px  !important; */
    /* margin: 0 !important; */
 }
 
-.event:focus {
-   border: 1px solid black !important;
+.rct-item-content {
+   width: 100% !important;
+   height: 100% !important;
 }
+
+/* .event: {
+   border: 1px solid black !important;
+} */
 
 .rct-header-root > div {
    background-color: #252332;
 }
+
+.rct-scroll {
+   background-color: white !important;
+   overflow: hidden !important;
+}
+
+.rct-scroll > div > div {
+   background-color: rgb(238, 15, 15) !important;
+   width: 2.5px !important;
+}
 .rct-header-root {
-   background: #1c6899 !important;
+   background: #7e90a6 !important;
 }
 .rct-primary {
    height: 51px !important;

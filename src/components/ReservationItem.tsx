@@ -5,13 +5,11 @@ function ReservationItem() {
    return (
       <div className='barestho-group'>
          <div className='barestho-group-header'>
-            <div className='barestho-flex'>
+            <div className='barestho-flex p-1'>
                <span className='font-bold'>18:00</span>
                <div className=' float-right flex items-center gap-1'>
                   2
-                  <FaCookie />
-                  5
-                  <FaRestroom />
+                  <FaCookie />5<i className='fa-solid fa-utensils'></i>
                </div>
             </div>
          </div>
@@ -30,7 +28,7 @@ function ReservationItem() {
                <div className='reservation-item false'>
                   <div className='header'></div>
                   <div className='status-group'>
-                     <FaCheck />
+                     <FaCheck color={'#21ba45'} size={16} />
                   </div>
                   <div className='name primary text-ellipsis'>Marion</div>
                   <div className='start secondary'>18:00</div>
@@ -40,26 +38,6 @@ function ReservationItem() {
                   </div>
 
                   <div className='tables'>T. 6 </div>
-                  <div className='details'> </div>
-                  <div className='other'></div>
-               </div>
-               <div className='reservation-item false'>
-                  <div className='header'></div>
-                  <div className='status-group'>
-                     <i className='icons'>
-                        <i
-                           aria-hidden='true'
-                           className='green check large icon barestho-mobile-status-icon'
-                        ></i>
-                     </i>
-                  </div>
-                  <div className='name primary text-ellipsis'>A Martine</div>
-                  <div className='zone secondary text-ellipsis'>default</div>
-                  <div className='count primary'>
-                     2 <i aria-hidden='true' className='utensils small fitted icon'></i>
-                  </div>
-                  <div className='start secondary'>18:00</div>
-                  <div className='tables'>T. 7 </div>
                   <div className='details'> </div>
                   <div className='other'></div>
                </div>

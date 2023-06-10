@@ -1,12 +1,10 @@
-import { faker, Faker } from '@faker-js/faker'
-import randomColor from 'randomcolor'
+import { faker } from '@faker-js/faker'
 import moment from 'moment'
 import { FaUsers } from 'react-icons/fa'
 import { TimelineGroupBase, TimelineItemBase } from 'react-calendar-timeline'
 import tables from '../../db/tables.json'
 
-export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
-   let randomSeed = Math.floor(Math.random() * 1000)
+export default function generateFakeData(groupCount = 30, itemCount = 1000, daysInPast = 30) {
    let groups: TimelineGroupBase[] = []
    for (let i = 0; i < tables.length; i++) {
       groups.push({
@@ -27,10 +25,6 @@ export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
    for (let i = 0; i < itemCount; i++) {
       const startDate =
          faker.date.recent(daysInPast).valueOf() + daysInPast * 0.3 * 86400 * 1000
-      const startValue = Math.floor(moment(startDate).valueOf() / 10000000) * 10000000
-      const endValue = moment(
-         startDate + faker.datatype.number({ min: 2, max: 20 }) * 15 * 60 * 1000,
-      ).valueOf()
 
       items.push({
          id: i + '',
