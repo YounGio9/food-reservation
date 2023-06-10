@@ -46,13 +46,27 @@ function Form() {
    const activeElementLabel = Steps[activeStep].label
 
    return (
-      <div className='w-[350px] h-auto bg-white font-bold rounded-3xl mb-20'>
-         <FormBanner />
-         <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
-            {activeElementLabel}
+      <div className='flex flex-col'>
+         <div className='hidden xl:block'>
+            <div className='text-white  text-4xl font-bold leading-relaxed mb-4'>
+               Feeling Food
+            </div>
+            <div className='text-white  text-2xl font-bold leading-normal'>
+               Réservez votre table
+            </div>
+            <div className='text-white text-xs font-normal leading-3 mb-3'>
+               En quelques clics
+            </div>
          </div>
-         <div>
-            <ActiveElement />
+
+         <div className='w-[330px] xl:mr-20 relative bg-white font-bold rounded-3xl mb-20'>
+            <FormBanner />
+            <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
+               {activeElementLabel}
+            </div>
+            <div>
+               <ActiveElement />
+            </div>
          </div>
       </div>
    )
