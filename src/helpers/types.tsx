@@ -78,3 +78,9 @@ export enum Months {
    'Novembre',
    'Décembre',
 }
+
+export interface DaySchedule {
+   day: string
+   start: string
+   end: string
+}

@@ -35,6 +35,7 @@ export default function Reservations() {
    const { groups } = generateFakeData(150, 150, 1)
 
    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+   // eslint-disable-next-line
    const [activeItemData, setActiveItemData] = React.useState({})
    const [isOpenReservationList, setIsOpenReservationList] = React.useState<boolean>(false)
 

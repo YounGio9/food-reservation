@@ -266,6 +266,20 @@ p {
    height: 100%;
 }
 
+@media (min-width: 1200px) {
+   .App {
+      background-image: linear-gradient(to right, #1c6899 50%, #1c6899, #900c3f 50%);
+   }
+}
+
+.leaflet-container {
+   width: 100%;
+   height: 400px;
+   overflow: hidden;
+   background: #ddd;
+   outline: 0;
+}
+
 body {
    margin: 0;
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
