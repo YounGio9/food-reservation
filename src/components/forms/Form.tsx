@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
-import Banner from './Banner'
+import FormBanner from './Banner'
 import { DayStep, Time, Guests, Preferences, Contact, Confirm, Finish } from './steps'
 
 function Form() {
@@ -46,8 +46,8 @@ function Form() {
    const activeElementLabel = Steps[activeStep].label
 
    return (
-      <div className='w-full h-auto bg-white font-bold rounded-3xl mb-20'>
-         <Banner />
+      <div className='w-[350px] h-auto bg-white font-bold rounded-3xl mb-20'>
+         <FormBanner />
          <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
             {activeElementLabel}
          </div>
