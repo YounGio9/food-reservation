@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
    shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 })
 
-function Infos() {
+function Infos({ visibility }: { visibility: 'hidden' | 'block' }) {
    const schedules: types.DaySchedule[] = [
       {
          day: 'Lundi',
@@ -57,7 +57,9 @@ function Infos() {
    }
 
    return (
-      <div className='h-fit w-80 xl:w-[40rem] relative bg-white rounded-3xl hidden xl:block'>
+      <div
+         className={`h-fit w-80 xl:w-[40rem] ${visibility} relative bg-white rounded-3xl  xl:block`}
+      >
          <div className='relative mb-10'>
             <img className='rounded-t-3xl w-full h-full' src={Overview} alt='Feeling Food' />
             <img

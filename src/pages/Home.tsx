@@ -5,20 +5,29 @@ import Infos from '../components/Infos'
 function Home() {
    const Form = React.lazy(() => import('../components/forms'))
 
+   const [infos, setInfos] = React.useState<boolean>(false)
+
    return (
       <div className='w-full h-full relative font-food text-black'>
          <Header />
          <div className='w-full xl:hidden py-1 px-6 text-xl flex items-center justify-between text-white font-semibold font-food'>
             <p>Feeling Food</p>
-            <button className='bg-gradient py-2 px-4 rounded-full'>Infos</button>
+            <button
+               onClick={() => setInfos(!infos)}
+               className='bg-gradient py-2 px-4 rounded-full'
+            >
+               Infos
+            </button>
          </div>
          <div className='py-3 px-6 mt-2 w-full flex justify-center'>
             <div className='flex items-start'>
-               <React.Suspense fallback={<div>Loading ...</div>}>
-                  <Form />
-               </React.Suspense>
+               {!infos && (
+                  <React.Suspense fallback={<div>Chargement ...</div>}>
+                     <Form />
+                  </React.Suspense>
+               )}
 
-               <Infos />
+               <Infos visibility={infos ? 'block' : 'hidden'} />
             </div>
          </div>
       </div>
