@@ -1,25 +1,29 @@
 import React from 'react'
-import { FaCheck, FaCookie, FaRestroom } from 'react-icons/fa'
+import { FaCheck, FaRestroom } from 'react-icons/fa'
+import { BsFillCalendarFill } from 'react-icons/bs'
+import { types, func } from '../helpers'
 
-function ReservationItem() {
+function ReservationItem({ item }: { item: types.Reservation & { group: number } }) {
    return (
-      <div className='barestho-group'>
+      <div className='barestho-group mb-4'>
          <div className='barestho-group-header'>
             <div className='barestho-flex p-1'>
-               <span className='font-bold'>18:00</span>
+               <span className='font-bold'> {item.reservationTime} </span>
                <div className=' float-right flex items-center gap-1'>
-                  2
-                  <FaCookie />5<i className='fa-solid fa-utensils'></i>
+                  {item.adultsGuests + item.childrenGuests}
+                  <BsFillCalendarFill />
+                  {func.getTable(item.group)}
+                  <FaRestroom />
                </div>
             </div>
          </div>
          <div className='time-list'>
             <div className='time-separator barestho-noselect'>
-               <span className='font-bold'>18:00</span>
+               <span className='font-bold'>{item.reservationTime}</span>
                <span className=' float-right flex items-center gap-1'>
-                  2
-                  <FaCookie />
-                  5
+                  {item.adultsGuests + item.childrenGuests}
+                  <BsFillCalendarFill />
+                  {func.getTable(item.group)}
                   <FaRestroom />
                </span>
             </div>
@@ -30,14 +34,15 @@ function ReservationItem() {
                   <div className='status-group'>
                      <FaCheck color={'#21ba45'} size={16} />
                   </div>
-                  <div className='name primary text-ellipsis'>Marion</div>
-                  <div className='start secondary'>18:00</div>
+                  <div className='name primary text-ellipsis'>{item.firstname} </div>
+                  <div className='start secondary'> {item.reservationTime} </div>
                   <div className='zone secondary text-ellipsis'>default</div>
                   <div className='count primary'>
-                     3 <i aria-hidden='true' className='utensils small fitted icon'></i>
+                     {item.adultsGuests + item.childrenGuests}{' '}
+                     <i aria-hidden='true' className='utensils small fitted icon'></i>
                   </div>
 
-                  <div className='tables'>T. 6 </div>
+                  <div className='tables'>T. {func.getTable(item.group)} </div>
                   <div className='details'> </div>
                   <div className='other'></div>
                </div>

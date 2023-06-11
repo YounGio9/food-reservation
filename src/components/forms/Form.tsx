@@ -47,9 +47,9 @@ function Form() {
    const activeElementLabel = Steps[activeStep].label
 
    return (
-      <div className='flex flex-col'>
-         <div className='hidden xl:block'>
-            {loading && <Loading />}
+      <div className='flex flex-col relative'>
+         {loading && <Loading />}
+         <div className='hidden xl:block relative overflow-hidden'>
             <div className='text-white  text-4xl font-bold leading-relaxed mb-4'>
                Feeling Food
             </div>

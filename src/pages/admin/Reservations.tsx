@@ -10,13 +10,16 @@ import Timeline, {
    TimelineItemBase,
    TodayMarker,
 } from 'react-calendar-timeline'
-import generateFakeData from './generateFakeData'
+import generateTables from './generateTables'
 import ReservationList from '../../components/ReservationList'
-import { Modal } from 'antd'
 import { IoList } from 'react-icons/io5'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import { getDateInFrench } from '../../helpers/functions'
+import { getDateAndTime, getDateInFrench } from '../../helpers/functions'
 import { FaUser } from 'react-icons/fa'
+import { types } from '../../helpers'
+import { client } from '../../helpers'
+import Loading from '../../components/UI/Loading'
+import CustomModal from '../../components/CustomModal'
 
 var keys = {
    groupIdKey: 'id',
@@ -32,13 +35,18 @@ var keys = {
 }
 
 export default function Reservations() {
-   const { groups } = generateFakeData(150, 150, 1)
+   const { groups } = generateTables()
 
+   const [events, setEvents] = React.useState<TimelineItemBase<Date>[]>([])
+
+   const [loading, setLoading] = React.useState<boolean>(false)
    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
    // eslint-disable-next-line
-   const [activeItemData, setActiveItemData] = React.useState({})
+   const [activeItemData, setActiveItemData] = React.useState<
+      types.Reservation & { group: number }
+   >({} as types.Reservation & { group: number })
    const [isOpenReservationList, setIsOpenReservationList] = React.useState<boolean>(false)
-
+   const [reservations, setReservations] = React.useState<types.Reservation[]>([])
    const [timeStart, setTimeStart] = React.useState<moment.Moment>(moment())
 
    const handleNext = () => {
@@ -49,33 +57,88 @@ export default function Reservations() {
       setTimeStart((prev) => prev.clone().subtract(1, 'day'))
    }
 
+   const getEndTime = (time: types.Schedule): string => {
+      const start = time.slice(0, 2)
+      const end = time.slice(3, 5)
+
+      return `${+start + 2}:${end}`
+
+      // switch (end) {
+      //    case '00':
+      //       return `${start}:${30}`
+      //    case '30':
+      //       return `${+start + 1}:00`
+      //    default:
+      //       return time
+      // }
+   }
+
+   const getReservations = async () => {
+      setLoading(true)
+      const data = await client.get('/reservations')
+
+      setReservations(data.data.data)
+      setLoading(false)
+   }
+
+   const getActualreservations = () => {
+      const filter = reservations.filter(
+         (data: Partial<types.Reservation>) =>
+            new Date(
+               data.reservationDate?.split('/').reverse().join(' ') as string,
+            ).getDay() === timeStart.toDate().getDay(),
+      )
+
+      setEvents(
+         filter.map(
+            (res: types.Reservation, idx: number): TimelineItemBase<Date> => ({
+               id: res.phoneNumber,
+               title: (
+                  <div className='p-0 w-full h-full flex flex-col'>
+                     <span>{res.firstname} </span>
+                     <span className='flex items-center justify-end w-full text-xs'>
+                        {res.adultsGuests + res.childrenGuests}
+                        <FaUser />{' '}
+                     </span>
+                  </div>
+               ),
+               start_time: getDateAndTime(res.reservationDate, res.reservationTime),
+               end_time: getDateAndTime(
+                  res.reservationDate,
+                  getEndTime(res.reservationTime as types.Schedule),
+               ),
+               group: idx + 1,
+               className: 'event',
+
+               // Today at 10 PM
+            }),
+         ),
+      )
+   }
+
+   React.useMemo(() => {
+      console.log('\nEvents', events)
+   }, [events])
+
+   React.useEffect(() => {
+      getActualreservations()
+
+      // eslint-disable-next-line
+   }, [timeStart, reservations])
+
+   React.useEffect(() => {
+      getReservations()
+      // eslint-disable-next-line
+   }, [])
+
    React.useEffect(() => {
       console.log(timeStart.clone().startOf('day').toDate())
       console.log(timeStart.clone().endOf('day').toDate())
    }, [timeStart])
 
-   const events: TimelineItemBase<any>[] = [
-      {
-         id: 1,
-         title: (
-            <div className='p-0 w-full h-full flex flex-col'>
-               <span>event</span>
-               <span className='flex items-center justify-end w-full text-xs'>
-                  {' '}
-                  2<FaUser />{' '}
-               </span>
-            </div>
-         ),
-         start_time: new Date('2023 6 8 10:00'),
-         end_time: new Date('2023 6 8 12:00'),
-         group: 2,
-         className: 'event',
-
-         // Today at 10 PM
-      },
-   ]
-
-   return (
+   return loading ? (
+      <Loading />
+   ) : (
       <div className='flex flex-col'>
          <div className='w-full flex items-center justify-center mt-5'>
             <div className=' w-72 bg-[#dc0044] flex rounded-full justify-between items-center p-2 text-base'>
@@ -94,33 +157,21 @@ export default function Reservations() {
          </div>
 
          <div className='flex mt-5 justify-center'>
-            <Modal
-               className='relative'
-               title='Réservation'
-               width={800}
-               cancelText={'Fermer'}
-               centered
-               onCancel={() => setIsModalOpen(false)}
-               open={isModalOpen}
-            >
-               <hr className='absolute top-14 border-t border-grey w-full left-0' />
-               <p className=' mb-1 mt-6 text-xl font-semibold leading-none'>Dubois Sophie</p>
-               <p className='text-[#808080] my-1'>sofinic@hotmail.com</p>
-               <p className='text-[#808080] '>+32 475 27 49 34</p>
-
-               <p className='flex flex-wrap text-base mb-4'>
-                  <p className=' basis-1/3'> samedi 10 juin 2023</p>
-                  <p className=' basis-1/3'> 18:30</p>
-                  <p className=' basis-1/3'>2 (2 adultes)</p>
-                  <p className=' basis-1/3'> Moment détente</p>
-                  <p className=' basis-1/3'> default</p>
-               </p>
-               <p className='border-b border-grey pb-3'>Si possible en terrasse </p>
-               <p className=' text-[#dc0044]'>Table</p>
-            </Modal>
+            <CustomModal
+               isModalOpen={isModalOpen}
+               activeItemData={activeItemData}
+               setIsModalOpen={setIsModalOpen}
+            />
             {isOpenReservationList && (
                <div className='barestho-scrollable reservations-list mr-4 w-72'>
-                  <ReservationList />
+                  <ReservationList
+                     reservations={reservations.filter(
+                        (data: Partial<types.Reservation>) =>
+                           new Date(
+                              data.reservationDate?.split('/').reverse().join(' ') as string,
+                           ).getDay() === timeStart.toDate().getDay(),
+                     )}
+                  />
                </div>
             )}
             <div className='bg-white w-3/4'>
@@ -133,17 +184,18 @@ export default function Reservations() {
                      stackItems
                      itemHeightRatio={0.75}
                      onItemSelect={(id, e, time) => {
-                        console.log(id, e, time)
                         setActiveItemData({
-                           e,
-                           id,
-                           time,
+                           ...(reservations.find(
+                              (res) => res.phoneNumber === id,
+                           ) as types.Reservation),
+                           group: events.find((event) => event.id === id)?.group as number,
                         })
                         setIsModalOpen(true)
                      }}
                      canMove={false}
                      lineHeight={47}
                      buffer={1}
+                     sidebarWidth={105}
                      // minResizeWidth={}
 
                      canResize={false}
@@ -181,183 +233,3 @@ export default function Reservations() {
       </div>
    )
 }
-
-// import { Button } from '@mui/material'
-// import React from 'react'
-// import Loading from '../../components/UI/Loading'
-// import { types } from '../../helpers'
-// import client from '../../helpers/client'
-// import { Scheduler } from '@aldabil/react-scheduler'
-// import { ProcessedEvent } from '@aldabil/react-scheduler/types'
-
-// function Reservations() {
-//    const [data, setData] = React.useState<ProcessedEvent[]>([])
-//    const [loading, setLoading] = React.useState<boolean>(false)
-
-//    const getEndTime = (time: types.Schedule): string => {
-//       const start = time.slice(0, 2)
-//       const end = time.slice(3, 5)
-
-//       switch (end) {
-//          case '00':
-//             return `${start}:${30}`
-//          case '30':
-//             return `${+start + 1}:00`
-//          default:
-//             return time
-//       }
-//    }
-
-//    console.log(getEndTime('14:00'))
-//    const getReservations = async () => {
-//       setLoading(true)
-//       const data = await client.get('/reservations')
-//       console.log(data.data.data)
-
-//       setData(
-//          data.data.data.map(
-//             (res: any, idx: number): ProcessedEvent => ({
-//                event_id: idx,
-//                title: res.client + '\n' + res.numberOfGuests,
-//                start: new Date(
-//                   res.reservationDate.split('/').reverse().join(' ') +
-//                      ' ' +
-//                      res.reservationTime,
-//                ),
-//                end: new Date(
-//                   [
-//                      ...res.reservationDate.split('/').reverse(),
-//                      getEndTime(res.reservationTime),
-//                   ].join(' '),
-//                ),
-//             }),
-//          ),
-//       )
-
-//       setLoading(false)
-//    }
-
-//    React.useMemo(() => {
-//       console.log(data)
-//    }, [data])
-
-//    React.useEffect(() => {
-//       getReservations()
-
-//       // eslint-disable-next-line
-//    }, [])
-
-//    return loading ? (
-//       <Loading />
-//    ) : (
-//       <div className='text-black h-full overflow-scroll'>
-//          <Scheduler
-//             editable={false}
-//             deletable={false}
-//             events={data}
-//             view='week'
-//             day={{
-//                startHour: 11,
-//                endHour: 23,
-//                step: 60,
-//                cellRenderer: ({ height, start, onClick, ...props }) => {
-//                   // Fake some condition up
-//                   const hour = start.getHours()
-//                   const minutes = start.getMinutes()
-//                   const disabled = [15, 16, 17, 18].includes(hour)
-//                   const restProps = disabled ? {} : props
-//                   return (
-//                      <Button
-//                         style={{
-//                            height: '100%',
-//                            background:
-//                               disabled || (hour === 14 && minutes === 30)
-//                                  ? '#eee'
-//                                  : 'transparent',
-//                            cursor: disabled ? 'not-allowed' : 'pointer',
-//                         }}
-//                         onClick={() => {
-//                            if (disabled) {
-//                               return alert('Feeling Food est fermé de 14h à 19h')
-//                            }
-//                            onClick()
-//                         }}
-//                         disableRipple={disabled}
-//                         {...restProps}
-//                      ></Button>
-//                   )
-//                },
-//             }}
-//             week={{
-//                weekDays: [0, 3, 4, 5, 6],
-//                step: 30,
-//                weekStartOn: 6,
-//                startHour: 11,
-//                endHour: 23,
-//                cellRenderer: ({ height, start, onClick, ...props }) => {
-//                   // Fake some condition up
-//                   const hour = start.getHours()
-//                   const minutes = start.getMinutes()
-//                   const disabled = [15, 16, 17, 18].includes(hour)
-//                   const restProps = disabled ? {} : props
-//                   return (
-//                      <Button
-//                         style={{
-//                            height: '100%',
-//                            background:
-//                               disabled || (hour === 14 && minutes === 30)
-//                                  ? '#eee'
-//                                  : 'transparent',
-//                            cursor: disabled ? 'not-allowed' : 'pointer',
-//                         }}
-//                         onClick={() => {
-//                            if (disabled) {
-//                               return alert('Feeling Food est fermé de 14h à 19h')
-//                            }
-//                            onClick()
-//                         }}
-//                         disableRipple={disabled}
-//                         {...restProps}
-//                      ></Button>
-//                   )
-//                },
-//             }}
-//             month={{
-//                weekDays: [0, 2, 3, 4, 5, 6],
-//                weekStartOn: 6,
-//                startHour: 11,
-//                endHour: 23,
-//                cellRenderer: ({ height, start, onClick, ...props }) => {
-//                   // Fake some condition up
-//                   const hour = start.getHours()
-//                   const minutes = start.getMinutes()
-//                   const disabled = [15, 16, 17, 18].includes(hour)
-//                   const restProps = disabled ? {} : props
-//                   return (
-//                      <Button
-//                         style={{
-//                            height: '100%',
-//                            background:
-//                               disabled || (hour === 14 && minutes === 30)
-//                                  ? '#eee'
-//                                  : 'transparent',
-//                            cursor: disabled ? 'not-allowed' : 'pointer',
-//                         }}
-//                         onClick={() => {
-//                            if (disabled) {
-//                               return alert('Feeling Food est fermé de 14h à 19h')
-//                            }
-//                            onClick()
-//                         }}
-//                         disableRipple={disabled}
-//                         {...restProps}
-//                      ></Button>
-//                   )
-//                },
-//             }}
-//          />
-//       </div>
-//    )
-// }
-
-// export default Reservations
