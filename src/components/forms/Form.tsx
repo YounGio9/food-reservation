@@ -48,8 +48,7 @@ function Form() {
 
    return (
       <div className='flex flex-col relative'>
-         {loading && <Loading />}
-         <div className='hidden xl:block relative overflow-hidden'>
+         <div className='hidden xl:block relative  overflow-hidden'>
             <div className='text-white  text-4xl font-bold leading-relaxed mb-4'>
                Feeling Food
             </div>
@@ -61,7 +60,8 @@ function Form() {
             </div>
          </div>
 
-         <div className='w-[330px] xl:mr-20 relative bg-white font-bold rounded-3xl mb-20'>
+         <div className='w-[330px] border-2 overflow-hidden xl:mr-20 relative bg-white font-bold rounded-3xl mb-20'>
+            {loading && <Loading />}
             <FormBanner />
             <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
                {activeElementLabel}
