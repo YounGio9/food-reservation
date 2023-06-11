@@ -2,7 +2,7 @@ import React from 'react'
 import { useStepper } from '../../contexts/StepperContext'
 import { types } from '../../helpers'
 import Loading from '../UI/Loading'
-import Banner from './Banner'
+import FormBanner from './Banner'
 import { DayStep, Time, Guests, Preferences, Contact, Confirm, Finish } from './steps'
 
 function Form() {
@@ -47,14 +47,28 @@ function Form() {
    const activeElementLabel = Steps[activeStep].label
 
    return (
-      <div className='w-full h-auto relative bg-white font-bold rounded-3xl mb-20'>
+      <div className='flex flex-col relative'>
          {loading && <Loading />}
-         <Banner />
-         <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
-            {activeElementLabel}
+         <div className='hidden xl:block relative overflow-hidden'>
+            <div className='text-white  text-4xl font-bold leading-relaxed mb-4'>
+               Feeling Food
+            </div>
+            <div className='text-white  text-2xl font-bold leading-normal'>
+               Réservez votre table
+            </div>
+            <div className='text-white text-xs font-normal leading-3 mb-3'>
+               En quelques clics
+            </div>
          </div>
-         <div>
-            <ActiveElement />
+
+         <div className='w-[330px] xl:mr-20 relative bg-white font-bold rounded-3xl mb-20'>
+            <FormBanner />
+            <div className='font-bold text-xl border-b-2 w-full py-4 text-center'>
+               {activeElementLabel}
+            </div>
+            <div>
+               <ActiveElement />
+            </div>
          </div>
       </div>
    )

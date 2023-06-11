@@ -84,9 +84,14 @@ function Guests() {
                Pour toute réservation de plus de 16, contactez directement le restaurant.
             </p>
          )}
+         {totalGuests > 0 && adults === 0 && (
+            <p className='text-xs px-4 py-6 text-white bg-blue text-left'>
+               Un adulte doit être présent
+            </p>
+         )}
          <div className='flex p-6 items-center justify-end'>
             <button
-               disabled={totalGuests <= 0}
+               disabled={adults <= 0}
                onClick={() =>
                   props.handleNext({
                      adultsGuests: adults,
@@ -94,10 +99,10 @@ function Guests() {
                   } as types.Reservation)
                }
                className={`border-2 transition duration-500  ${
-                  totalGuests === 0 ? 'border-grey text-grey' : 'border-black'
+                  adults === 0 ? 'border-grey text-grey' : 'border-black'
                }  p-2 text-xs rounded-full`}
             >
-               {totalGuests === 0
+               {adults === 0
                   ? "Nombre d'invites"
                   : totalGuests === 1
                   ? 'Juste moi'

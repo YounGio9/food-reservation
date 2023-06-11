@@ -1,6 +1,7 @@
 import React from 'react'
 import { types } from '../helpers'
 import client from '../helpers/client'
+import { getDateInFrench } from '../helpers/functions'
 
 const StepperContext = React.createContext({} as types.Stepper)
 
@@ -50,14 +51,7 @@ function StepperProvider(props: { children: types.contextChildren; numberOfSteps
 
    const setDate = (date: Date) => {
       console.log('choosen Date', date)
-      setChoosenDateInString(
-         [
-            types.Days[date.getDay()].toLocaleLowerCase(),
-            date.getDate(),
-            types.Months[date.getMonth()].toLocaleLowerCase(),
-            date.getFullYear(),
-         ].join(' '),
-      )
+      setChoosenDateInString(getDateInFrench(date))
 
       handleNext({
          reservationDate: date.toLocaleDateString('en-GB'),
