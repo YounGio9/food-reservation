@@ -1,6 +1,6 @@
 {
    "name": "feeling-food",
-   "version": "0.1.0",
+   "version": "1.0.0",
    "homepage": "https://youngio9.github.io/food-reservation",
    "private": true,
    "dependencies": {
